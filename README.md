@@ -1,2 +1,2 @@
 # filler
-The goal of this project is to introduce you to basic algorithm and to have you manipulate inputs/outputs.
+The goal of this project is to introduce basic algorithm and to have manipulate inputs/outputs.
