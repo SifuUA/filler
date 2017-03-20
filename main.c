@@ -1,5 +1,26 @@
 #include "filler.h"
 
+t_point			find(char **str, char c)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == c)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	free(str);
+	return (0);
+}
+
 void			push_piece(int y, int x, t_fill *fill)
 {
 	size_t n;
