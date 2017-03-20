@@ -15,15 +15,20 @@ void			push_piece(int y, int x, t_fill *fill)
 		m = 0;
 		while (m < fill->size_f[1])
 		{
-			if (fill->piece[n][m] == fill->plateau[y + n][x + m]
-					|| fill->piece[n][m] == '*' || fill->piece[n][m] ==
-					fill->bot)
+			if (fill->piece[n][m] == fill->plateau[y + n][x + m])
 				m++;
-			else if (fill->piece[n][m] == fill->player)
+			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == '.')
+				m++;
+			else if(fill->piece[n][m] == '.' && (fill->plateau[y + n][x + m] == fill->bot
+					|| fill->plateau[y + n][x + m] == fill->player))
+				m++;
+			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->player)
 			{
 				m++;
 				count++;
 			}
+			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->bot)
+				break ;
 			if (count > 1)
 				break ;
 			count_all++;
@@ -49,7 +54,7 @@ void			search(t_fill *fill)
 	while (fill->plateau[y])
 	{
 		x = 0;
-		while (fill->plateau[x])
+		while (x < fill->size_m[1] && fill->size_m[1] - x >= fill->size_f[1])
 		{
 			push_piece(y, x, fill);
 			x++;
