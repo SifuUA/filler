@@ -20,24 +20,20 @@ void		get_piece(t_fill *fill, char *str)
 
 void		write_piece(t_fill *fill, char *str)
 {
-	static int i;
-
 	if (str[0] == '.' || str[0] == '*')
 	{
-		fill->piece[i] = ft_strdup(str);
-		i++;
+		fill->piece[fill->i] = ft_strdup(str);
+		fill->i++;
 	}
 }
 
 void		write_plateau(t_fill *fill, char *str)
 {
-	static int i;
-
 	if (str[3] == ' ' && (str[4] == '.' || str[4] == 'X' ||
 						  str[4] == 'x' ||  str[4] == 'O' || str[4] == 'o'))
 	{
-		fill->plateau[i] = ft_strdup(str);
-		i++;
+		fill->plateau[fill->j] = ft_strdup(str+=4);
+		fill->j++;
 	}
 
 }
@@ -65,9 +61,15 @@ void		get_player(t_fill *fill, char *str)
 	if (str[0] == '$' && str[9] == 'p')
 	{
 		if (str[10] == '1')
-			fill->player = 1;
+		{
+			fill->player = 'O';
+			fill->bot = 'X';
+		}
 		else if (str[10] == '2')
-			fill->player = 2;
+		{
+			fill->player = 'X';
+			fill->bot = 'O';
+		}
 	}
 }
 
