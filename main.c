@@ -42,9 +42,9 @@ void			push_piece(int y, int x, t_fill *fill)
 			if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->player)
 				count++;
 			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->bot)
-				break ;
+				return ;
 			else if (count > 1)
-				break ;
+				return ;
 			count_all++;
 			m++;
 		}
@@ -117,6 +117,7 @@ t_fill			*get_mem(void)
 		exit(1);
 	while (i < 1000)
 	{
+		new->plateau[i] = (char *)malloc(sizeof(char ) * 1000);
 		ft_bzero(new->plateau[i], 1000);
 		i++;
 	}
@@ -126,13 +127,14 @@ t_fill			*get_mem(void)
 		exit(1);
 	while (i < 1000)
 	{
+		new->piece[i] = (char *)malloc(sizeof(char ) * 1000);
 		ft_bzero(new->piece[i], 1000);
 		i++;
 	}
 	new->size_f[0] = 0;
 	new->size_f[1] = 0;
-	new->size_m[0] = 0;
-	new->size_m[1] = 0;
+	new->size_m[0] = -999;
+	new->size_m[1] = -999;
 	new->i = 0;
 	new->j = 0;
 	return (new);

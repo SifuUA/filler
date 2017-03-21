@@ -17,8 +17,8 @@ typedef struct s_fill
 	char 	bot;
 	size_t	i;
 	size_t	j;
-	size_t	size_m[2];
-	size_t 	size_f[2];
+	int		size_m[2];
+	int 	size_f[2];
 
 }				t_fill;
 
