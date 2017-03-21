@@ -1,9 +1,24 @@
 #include "filler.h"
 
-t_point			find(char **str, char c)
+int		distance(int x, int y, int x1, int y1)
+{
+	int	res;
+	int	res1;
+
+	res = (x - x1);
+	res1 = (y - y1);
+	if (res < 0)
+		res = -res;
+	if (res1 < 0)
+		res1 = -res1;
+	return (res + res1);
+}
+
+t_point			find_player(char **str, char c, t_fill *fill)
 {
 	int i;
 	int j;
+	t_point p;
 
 	i = 0;
 	while (str[i])
@@ -11,14 +26,19 @@ t_point			find(char **str, char c)
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == c)
-				return (1);
+			if (str[i][j] == fill->player && (str[i][j - 1] == '.'
+				|| str[i][j + 1] == '.' ||
+					str[i - 1][j] == '.' || str[i + 1][j] == '.'))
+			{
+				p.x = j;
+				p.y = i;
+			}
+
 			j++;
 		}
 		i++;
 	}
 	free(str);
-	return (0);
 }
 
 void			push_piece(int y, int x, t_fill *fill)
@@ -36,23 +56,12 @@ void			push_piece(int y, int x, t_fill *fill)
 		m = 0;
 		while (m < fill->size_f[1])
 		{
-			if (fill->piece[n][m] == fill->plateau[y + n][x + m])
-				m++;
-			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == '.')
-				m++;
-			else if(fill->piece[n][m] == '.' && (fill->plateau[y + n][x + m] == fill->bot
-					|| fill->plateau[y + n][x + m] == fill->player))
-				m++;
-			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->player)
-			{
-				m++;
+			if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->player)
 				count++;
-			}
 			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->bot)
 				break ;
-			if (count > 1)
-				break ;
 			count_all++;
+			m++;
 		}
 		n++;
 	}
@@ -72,7 +81,7 @@ void			search(t_fill *fill)
 
 	y = 0;
 	fill->i = 0;
-	while (fill->plateau[y])
+	while (fill->plateau[y] && fill->size_m[0] - y >= fill->size_f[0])
 	{
 		x = 0;
 		while (x < fill->size_m[1] && fill->size_m[1] - x >= fill->size_f[1])
