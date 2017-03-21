@@ -106,18 +106,29 @@ static void 	write_in(t_fill *fill)
 t_fill			*get_mem(void)
 {
 	t_fill	*new;
+	int 	i;
 
+	i = 0;
 	new = malloc(sizeof(t_fill));
 	if (!new)
 		exit(1);
 	new->plateau = (char **)malloc(sizeof(char *) * 1000);
 	if (!new->plateau)
 		exit(1);
-	ft_bzero(new->plateau, 1000);
+	while (i < 1000)
+	{
+		ft_bzero(new->plateau[i], 1000);
+		i++;
+	}
+	i = 0;
 	new->piece = (char **)malloc(sizeof(char *) * 1000);
 	if (!new->piece)
 		exit(1);
-	ft_bzero(new->piece, 1000);
+	while (i < 1000)
+	{
+		ft_bzero(new->piece[i], 1000);
+		i++;
+	}
 	new->size_f[0] = 0;
 	new->size_f[1] = 0;
 	new->size_m[0] = 0;
