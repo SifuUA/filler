@@ -1,44 +1,27 @@
 #include "filler.h"
 
-int		distance(int x, int y, int x1, int y1)
-{
-	int	res;
-	int	res1;
-
-	res = (x - x1);
-	res1 = (y - y1);
-	if (res < 0)
-		res = -res;
-	if (res1 < 0)
-		res1 = -res1;
-	return (res + res1);
-}
-
-t_point			find_player(char **str, char c, t_fill *fill)
+void			clear_arr(char **ar, int y)
 {
 	int i;
-	int j;
-	t_point p;
 
 	i = 0;
-	while (str[i])
+	while (i < y)
 	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (str[i][j] == fill->player && (str[i][j - 1] == '.'
-				|| str[i][j + 1] == '.' ||
-					str[i - 1][j] == '.' || str[i + 1][j] == '.'))
-			{
-				p.x = j;
-				p.y = i;
-			}
-
-			j++;
-		}
+		ft_bzero(ar[i], ft_strlen(ar[i]));
 		i++;
 	}
-	free(str);
+}
+
+void			clear(t_fill *new)
+{
+	clear_arr(new->plateau, (int)new->size_m[0]);
+	clear_arr(new->piece, (int)new->size_f[0]);
+	new->size_f[0] = 0;
+	new->size_f[1] = 0;
+	new->size_m[0] = 0;
+	new->size_m[1] = 0;
+	new->i = 0;
+	new->j = 0;
 }
 
 void			push_piece(int y, int x, t_fill *fill)
@@ -59,6 +42,8 @@ void			push_piece(int y, int x, t_fill *fill)
 			if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->player)
 				count++;
 			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->bot)
+				break ;
+			else if (count > 1)
 				break ;
 			count_all++;
 			m++;
@@ -91,6 +76,11 @@ void			search(t_fill *fill)
 		}
 		y++;
 	}
+	ft_putnbr_fd(fill->point->y, 1);
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd(fill->point->x, 1);
+	ft_putchar_fd('\n', 1);
+	clear(fill);
 }
 
 static void 	write_in(t_fill *fill)
