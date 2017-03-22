@@ -22,8 +22,8 @@ void	push_piece(int y, int x, t_fill *fill)
 					fill->plateau[y + fill->n][x + fill->m] == fill->player)
 				fill->count++;
 			else if (fill->piece[fill->n][fill->m] == '*' &&
-					(fill->plateau[y + fill->n][x + fill->m] ==
-							(fill->bot || fill->l_bot)))
+					(fill->plateau[y + fill->n][x + fill->m] == fill->bot ||
+							fill->plateau[y + fill->n][x + fill->m] == fill->l_bot))
 				return ;
 			else if (fill->count > 1)
 				return ;

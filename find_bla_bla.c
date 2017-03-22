@@ -4,6 +4,21 @@
 
 #include "filler.h"
 
+int 	find_b(t_fill *fill, char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == fill->bot || str[i] == fill->l_bot)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+
 t_point	*find_road(t_point *p, t_fill *fill)
 {
 	int i;
@@ -15,14 +30,24 @@ t_point	*find_road(t_point *p, t_fill *fill)
 	point = (t_point *)malloc(sizeof(t_point));
 	min = manh_dist(p->x, p->y, fill->point[i].x,
 					fill->point[i].y);
+	point->y = fill->point[i].y;
+	point->x = fill->point[i].x;
 	while (i < fill->i)
 	{
 		distance = manh_dist(p->x, p->y, fill->point[i].x,
 							 fill->point[i].y);
-		if (min > distance)
+		if (min > distance && !find_b(fill,
+			fill->plateau[fill->point[i].y]))
 		{
 			point->x = fill->point[i].x;
 			point->y = fill->point[i].y;
+		}
+		else if(min > distance && find_b(fill,
+			fill->plateau[fill->point[i + 1].y]))
+		{
+			point->x = fill->point[i].x;
+			point->y = fill->point[i].y;
+			min = distance;
 		}
 		i++;
 	}
