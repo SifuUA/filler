@@ -4,9 +4,29 @@
 
 #include "filler.h"
 
-void	find_road(t_point *p, t_fill *fill)
+t_point	*find_road(t_point *p, t_fill *fill)
 {
+	int i;
+	int min;
+	int distance;
+	t_point *point;
 
+	i = 0;
+	point = (t_point *)malloc(sizeof(t_point));
+	min = manh_dist(p->x, p->y, fill->point[i].x,
+					fill->point[i].y);
+	while (i < fill->i)
+	{
+		distance = manh_dist(p->x, p->y, fill->point[i].x,
+							 fill->point[i].y);
+		if (min > distance)
+		{
+			point->x = fill->point[i].x;
+			point->y = fill->point[i].y;
+		}
+		i++;
+	}
+	return (point);
 }
 
 int 	find_player(t_fill *fill, char *str)

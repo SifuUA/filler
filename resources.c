@@ -54,13 +54,12 @@ void	search(t_fill *fill)
 		}
 		y++;
 	}
-	p_b = find_bot(fill);
-	find_road(p_b, fill);
-	/*ft_putnbr_fd(fill->point->y, 1);
+	p_b = find_road(find_bot(fill), fill);
+	ft_putnbr_fd(p_b->y, 1);
 	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(fill->point->x, 1);
+	ft_putnbr_fd(p_b->x, 1);
 	ft_putchar_fd('\n', 1);
 	clear(fill);
-	 */
+
 }
 
