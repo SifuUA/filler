@@ -1,9 +1,5 @@
 #include "filler.h"
 
-void	best_place(t_fill *fill)
-{
-
-}
 
 void	record(t_fill *fill, int y, int x)
 {
@@ -26,8 +22,8 @@ void	push_piece(int y, int x, t_fill *fill)
 					fill->plateau[y + fill->n][x + fill->m] == fill->player)
 				fill->count++;
 			else if (fill->piece[fill->n][fill->m] == '*' &&
-					(fill->plateau[y + fill->n][x + fill->m] == fill->bot ||
-							fill->plateau[y + fill->n][x + fill->m] == fill->l_bot))
+					(fill->plateau[y + fill->n][x + fill->m] ==
+							(fill->bot || fill->l_bot)))
 				return ;
 			else if (fill->count > 1)
 				return ;
@@ -44,6 +40,7 @@ void	search(t_fill *fill)
 {
 	int x;
 	int y;
+	t_point *p_b;
 
 	y = 0;
 	fill->i = 0;
@@ -57,10 +54,13 @@ void	search(t_fill *fill)
 		}
 		y++;
 	}
-	ft_putnbr_fd(fill->point->y, 1);
+	p_b = find_bot(fill);
+	find_road(p_b, fill);
+	/*ft_putnbr_fd(fill->point->y, 1);
 	ft_putchar_fd(' ', 1);
 	ft_putnbr_fd(fill->point->x, 1);
 	ft_putchar_fd('\n', 1);
 	clear(fill);
+	 */
 }
 

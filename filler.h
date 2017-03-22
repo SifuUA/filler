@@ -36,4 +36,8 @@ void		get_plateau(t_fill *fill, char *str);
 void		get_player(t_fill *fill, char *str);
 void		search(t_fill *fill);
 void		clear(t_fill *new);
+int 		find_player(t_fill *fill, char *str);
+t_point		*find_bot(t_fill *fill);
+void		find_road(t_point *p, t_fill *fill);
+int			manh_dist(int x, int y, int x1, int y1);
 #endif

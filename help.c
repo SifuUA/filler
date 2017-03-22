@@ -23,3 +23,17 @@ void			clear(t_fill *new)
 	new->i = 0;
 	new->j = 0;
 }
+
+int		manh_dist(int x, int y, int x1, int y1)
+{
+	int	res;
+	int	res1;
+
+	res = (x - x1);
+	res1 = (y - y1);
+	if (res < 0)
+		res = -res;
+	if (res1 < 0)
+		res1 = -res1;
+	return (res + res1);
+}
