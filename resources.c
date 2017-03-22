@@ -1,64 +1,46 @@
 #include "filler.h"
 
-void			clear_arr(char **ar, int y)
+void	best_place(t_fill *fill)
 {
-	int i;
 
-	i = 0;
-	while (i < y)
-	{
-		ft_bzero(ar[i], ft_strlen(ar[i]));
-		i++;
-	}
 }
 
-void			clear(t_fill *new)
+void	record(t_fill *fill, int y, int x)
 {
-	clear_arr(new->plateau, new->size_m[0]);
-	clear_arr(new->piece, new->size_f[0]);
-	new->size_f[0] = 0;
-	new->size_f[1] = 0;
-	new->size_m[0] = 0;
-	new->size_m[1] = 0;
-	new->i = 0;
-	new->j = 0;
+	fill->point[fill->i].x = x;
+	fill->point[fill->i].y = y;
+	fill->i++;
 }
 
-void			push_piece(int y, int x, t_fill *fill)
+void	push_piece(int y, int x, t_fill *fill)
 {
-	size_t n;
-	size_t m;
-	size_t count;
-	size_t count_all;
-
-	n = 0;
-	count = 0;
-	count_all = 0;
-	while (n < fill->size_f[0])
+	fill->n = 0;
+	fill->count = 0;
+	fill->count_all = 0;
+	while (fill->n < fill->size_f[0])
 	{
-		m = 0;
-		while (m < fill->size_f[1])
+		fill->m = 0;
+		while (fill->m < fill->size_f[1])
 		{
-			if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->player)
-				count++;
-			else if (fill->piece[n][m] == '*' && fill->plateau[y + n][x + m] == fill->bot)
+			if (fill->piece[fill->n][fill->m] == '*' &&
+					fill->plateau[y + fill->n][x + fill->m] == fill->player)
+				fill->count++;
+			else if (fill->piece[fill->n][fill->m] == '*' &&
+					(fill->plateau[y + fill->n][x + fill->m] == fill->bot ||
+							fill->plateau[y + fill->n][x + fill->m] == fill->l_bot))
 				return ;
-			else if (count > 1)
+			else if (fill->count > 1)
 				return ;
-			count_all++;
-			m++;
+			fill->count_all++;
+			fill->m++;
 		}
-		n++;
+		fill->n++;
 	}
-	if (count == 1 && count_all == fill->size_f[0] * fill->size_f[1])
-	{
-		fill->point[fill->i].x = x;
-		fill->point[fill->i].y = y;
-		fill->i++;
-	}
+	if (fill->count == 1 && fill->count_all == fill->size_f[0] * fill->size_f[1])
+		record(fill, y, x);
 }
 
-void			search(t_fill *fill)
+void	search(t_fill *fill)
 {
 	int x;
 	int y;

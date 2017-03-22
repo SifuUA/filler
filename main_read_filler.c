@@ -1,7 +1,7 @@
 #include "filler.h"
 #include <fcntl.h>
 
-int	main(void)
+/*int	main(void)
 {
 	int fd;
 	char *buf;
@@ -14,4 +14,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}
+}*/
