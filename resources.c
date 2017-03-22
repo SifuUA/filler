@@ -63,7 +63,7 @@ void	search(t_fill *fill)
 
 }
 
-void	analize(t_point *point, t_fill *fill)
+void	analize(t_point *point, t_fill *fill)//strategy
 {
 	static int flag;
 	int i;
