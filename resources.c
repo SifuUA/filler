@@ -63,3 +63,33 @@ void	search(t_fill *fill)
 
 }
 
+void	analize(t_point *point, t_fill *fill)
+{
+	static int flag;
+	int i;
+	int j;
+
+	i = 0;
+	while (i < fill->size_m[0] && flag == 0)
+	{
+		j = 0;
+		while (j < fill->size_m[1])
+		{
+			if (fill->plateau[i][j] == fill->player)
+			{
+				flag = 777;
+				break ;
+			}
+			else if (fill->plateau[i][j] == fill->bot)
+			{
+				flag = -666;
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+
+	point->y = fill->size_m[0]/2;
+	point->x = flag == 777 ? fill->size_m[1] : 0;
+}

@@ -25,7 +25,6 @@ typedef struct s_fill
 	size_t count;
 	size_t count_all;
 
-
 }				t_fill;
 
 t_fill		*get_mem(void);
@@ -40,4 +39,5 @@ int 		find_player(t_fill *fill, char *str);
 t_point		*find_bot(t_fill *fill);
 t_point		*find_road(t_point *p, t_fill *fill);
 int			manh_dist(int x, int y, int x1, int y1);
+void		analize(t_point *point, t_fill *fill);
 #endif
