@@ -22,10 +22,11 @@ typedef struct s_fill
 
 }				t_fill;
 
-
+t_fill		*get_mem(void);
 void		get_piece(t_fill *fill, char *str);
 void		write_piece(t_fill *fill, char *str);
 void		write_plateau(t_fill *fill, char *str);
 void		get_plateau(t_fill *fill, char *str);
 void		get_player(t_fill *fill, char *str);
+void		search(t_fill *fill);
 #endif

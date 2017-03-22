@@ -1,7 +1,3 @@
-//
-// Created by Denys on 18.03.2017.
-//
-
 #include "filler.h"
 #include <fcntl.h>
 
@@ -16,7 +12,6 @@ int	main(void)
 		ft_putendl_fd(buf, fd);
 		ft_strdel(&buf);
 	}
-	//ft_putendl_fd("8 2", 1);
 	close(fd);
 	return (0);
 }
