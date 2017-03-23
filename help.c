@@ -1,5 +1,29 @@
 #include "filler.h"
 
+void	put_flag(t_fill *fill, char *str, int *flag)
+{
+	int i;
+
+	i = 0;
+	if (*flag == 0)
+	{
+		while (str[i])
+		{
+			if (str[i] == fill->bot)
+			{
+				*flag = -777;
+				break ;
+			}
+			else if (str[i] == fill->player)
+			{
+				*flag = 777;
+				break;
+			}
+			i++;
+		}
+	}
+}
+
 void			clear_arr(char **ar, int y)
 {
 	int i;
@@ -20,6 +44,13 @@ void			clear(t_fill *new)
 	new->size_f[1] = 0;
 	new->size_m[0] = 0;
 	new->size_m[1] = 0;
+	new->i--;
+	while (new->i >= 0)
+	{
+		new->point[new->i].y = 0;
+		new->point[new->i].x = 0;
+		new->i --;
+	}
 	new->i = 0;
 	new->j = 0;
 }
