@@ -36,6 +36,9 @@ t_point	*find_road(t_point *p, t_fill *fill)
 	int hz;
 	int pz;
 
+
+
+
 	i = 0;
 	point = (t_point *)malloc(sizeof(t_point));
 	min = manh_dist(p->x, p->y, fill->point[i].x,
