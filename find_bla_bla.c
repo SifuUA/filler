@@ -53,9 +53,6 @@ t_point	*find_road(t_point *p, t_fill *fill)
 			point->y = fill->point[i].y;
 			point->x = fill->point[i].x;
 			min = distance;
-
-
-
 		}
 		i++;
 	}
