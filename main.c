@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/24 21:32:09 by okres             #+#    #+#             */
+/*   Updated: 2017/03/24 21:32:51 by okres            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
-void 	write_in(t_fill *fill)
+void	write_in(t_fill *fill)
 {
-	char 	*str;
-	static int flag;
+	char		*str;
+	static int	flag;
 
 	fill->i = 0;
 	fill->j = 0;
@@ -24,11 +36,10 @@ void 	write_in(t_fill *fill)
 	}
 }
 
-int 	main(void)
+int		main(void)
 {
-	t_fill *fill;
+	t_fill	*fill;
 
 	fill = get_mem();
 	write_in(fill);
 }
-

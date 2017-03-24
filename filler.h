@@ -1,5 +1,17 @@
-#ifndef FILLER_FILLER_H_H
-#define FILLER_FILLER_H_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filler.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/24 21:29:20 by okres             #+#    #+#             */
+/*   Updated: 2017/03/24 21:30:35 by okres            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FILLER_FILLER_H
+# define FILLER_FILLER_H
 
 # include "libft/libft.h"
 
@@ -24,6 +36,11 @@ typedef struct	s_fill
 	int			m;
 	size_t		count;
 	size_t		count_all;
+	int			min;
+	int			pz;
+	int			k;
+	int			distance;
+	int			hz;
 }				t_fill;
 
 t_fill			*get_mem(void);
@@ -42,6 +59,9 @@ int				manh_dist(int x, int y, int x1, int y1);
 void			analize(t_point *point, t_fill *fill, int flag);
 void			put_flag(t_fill *fill, char *str, int *flag);
 int				find_bott(t_fill *fill, char *str);
-int 			find_first_p(t_fill *fill);
-int 			find_left_b(t_fill *fill);
+int				find_first_p(t_fill *fill);
+int				find_left_b(t_fill *fill);
+int				find_end(t_fill *fill);
+int				find_beg(t_fill *fill);
+void			push_piece(int y, int x, t_fill *fill);
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_struct.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/24 20:06:34 by okres             #+#    #+#             */
+/*   Updated: 2017/03/24 20:08:18 by okres            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 void		get_piece(t_fill *fill, char *str)
@@ -30,12 +42,11 @@ void		write_piece(t_fill *fill, char *str)
 void		write_plateau(t_fill *fill, char *str)
 {
 	if (str[3] == ' ' && (str[4] == '.' || str[4] == 'X' ||
-						  str[4] == 'x' ||  str[4] == 'O' || str[4] == 'o'))
+				str[4] == 'x' || str[4] == 'O' || str[4] == 'o'))
 	{
-		fill->plateau[fill->j] = ft_strdup(str+=4);
+		fill->plateau[fill->j] = ft_strdup(str += 4);
 		fill->j++;
 	}
-
 }
 
 void		get_plateau(t_fill *fill, char *str)
@@ -74,4 +85,3 @@ void		get_player(t_fill *fill, char *str)
 		}
 	}
 }
-

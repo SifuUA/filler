@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   resources.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/24 21:41:35 by okres             #+#    #+#             */
+/*   Updated: 2017/03/24 21:54:40 by okres            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
-int 	find_beg(t_fill *fill)
+int		find_beg(t_fill *fill)
 {
 	int i;
 	int j;
@@ -20,7 +32,7 @@ int 	find_beg(t_fill *fill)
 	return (0);
 }
 
-int 	find_end(t_fill *fill)
+int		find_end(t_fill *fill)
 {
 	int i;
 	int j;
@@ -47,6 +59,15 @@ void	record(t_fill *fill, int y, int x)
 	fill->i++;
 }
 
+int		l_h(t_fill *fill, int y, int x)
+{
+	if (fill->piece[fill->n][fill->m] == '*' &&
+		(fill->plateau[y + fill->n][x + fill->m] == fill->bot ||
+		fill->plateau[y + fill->n][x + fill->m] == fill->l_bot))
+		return (1);
+	return (0);
+}
+
 void	push_piece(int y, int x, t_fill *fill)
 {
 	fill->n = 0;
@@ -62,9 +83,7 @@ void	push_piece(int y, int x, t_fill *fill)
 			if (fill->piece[fill->n][fill->m] == '*' &&
 					fill->plateau[y + fill->n][x + fill->m] == fill->player)
 				fill->count++;
-			else if (fill->piece[fill->n][fill->m] == '*' &&
-					(fill->plateau[y + fill->n][x + fill->m] == fill->bot ||
-							fill->plateau[y + fill->n][x + fill->m] == fill->l_bot))
+			else if (l_h(fill, y, x))
 				return ;
 			else if (fill->count > 1)
 				return ;
@@ -73,66 +92,7 @@ void	push_piece(int y, int x, t_fill *fill)
 		}
 		fill->n++;
 	}
-	if (fill->count == 1 && fill->count_all == fill->size_f[0] * fill->size_f[1])
+	if (fill->count == 1 && fill->count_all ==
+			fill->size_f[0] * fill->size_f[1])
 		record(fill, y, x);
-}
-
-void	search(t_fill *fill, int flag)
-{
-	int x;
-	int y;
-	t_point *p_b;
-
-	y = 0;
-	fill->i = 0;
-	while (y < fill->size_m[0])
-	{
-		x = 0;
-		while (x < fill->size_m[1])
-		{
-			push_piece(y, x, fill);
-			x++;
-		}
-		y++;
-	}
-	p_b = find_road(flag > 0 ? find_bot(fill, flag) : find_bot_revers(fill, flag), fill, flag);
-	ft_putnbr_fd(p_b->y, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(p_b->x, 1);
-	ft_putchar_fd('\n', 1);
-	clear(fill);
-
-}
-
-void	analize(t_point *point, t_fill *fill, int flag)//strategy
-{
-	point->y = flag > 0 ? fill->size_m[0]/2 : (fill->size_m[0]);
-	point->x = flag > 0 ? fill->size_m[1] : 0;
-	if (find_player(fill, fill->plateau[fill->size_m[0] - 1]) && find_beg(fill) && !find_end(fill))
-	{
-		point->y = fill->size_m[0] / 4;
-		point->x = fill->size_m[1] - 1;
-	}
-	else if (fill->plateau[fill->size_m[0]][0] == fill->player && flag < 0)
-	{
-		point->y = fill->size_m[0]/2 ;
-		point->x = 0;
-	}
-	else if (find_player(fill, fill->plateau[fill->size_m[0] - 2]) &&
-			find_bott(fill, fill->plateau[fill->size_m[0] - 2]) && flag < 0
-			&& (fill->plateau[fill->size_m[0]/4][1] != fill->player ||
-			fill->plateau[fill->size_m[0]/4 + 1][1] != fill->player) && find_end(fill))
-	{
-		point->y = fill->size_m[0]/4;
-		point->x = 0;
-	}
-	else if (find_player(fill, fill->plateau[fill->size_m[0] - 2]) &&
-			 find_bott(fill, fill->plateau[fill->size_m[0] - 2]) && flag < 0
-			 && (fill->plateau[fill->size_m[0]/4][1] == fill->player ||
-				 fill->plateau[fill->size_m[0]/4 + 1][1] == fill->player) &&
-			find_player(fill, fill->plateau[0]) && !find_end(fill))
-	{
-		point->y = fill->size_m[0]/ 4 + fill->size_m[0] / 2;
-		point->x = fill->size_m[1];
-	}
 }
