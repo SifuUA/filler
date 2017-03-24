@@ -1,5 +1,44 @@
 #include "filler.h"
 
+int 	find_beg(t_fill *fill)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (fill->plateau[i])
+	{
+		j = 0;
+		while (fill->plateau[i][j])
+		{
+			if (fill->plateau[i][0] == fill->player)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int 	find_end(t_fill *fill)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (fill->plateau[i])
+	{
+		j = 0;
+		while (fill->plateau[i][j])
+		{
+			if (fill->plateau[i][fill->size_m[1] - 1] == fill->player)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 void	record(t_fill *fill, int y, int x)
 {
@@ -69,4 +108,31 @@ void	analize(t_point *point, t_fill *fill, int flag)//strategy
 {
 	point->y = flag > 0 ? fill->size_m[0]/2 : (fill->size_m[0]);
 	point->x = flag > 0 ? fill->size_m[1] : 0;
+	if (find_player(fill, fill->plateau[fill->size_m[0] - 1]) && find_beg(fill) && !find_end(fill))
+	{
+		point->y = fill->size_m[0] / 4;
+		point->x = fill->size_m[1] - 1;
+	}
+	else if (fill->plateau[fill->size_m[0]][0] == fill->player && flag < 0)
+	{
+		point->y = fill->size_m[0]/2 ;
+		point->x = 0;
+	}
+	else if (find_player(fill, fill->plateau[fill->size_m[0] - 2]) &&
+			find_bott(fill, fill->plateau[fill->size_m[0] - 2]) && flag < 0
+			&& (fill->plateau[fill->size_m[0]/4][1] != fill->player ||
+			fill->plateau[fill->size_m[0]/4 + 1][1] != fill->player) && find_end(fill))
+	{
+		point->y = fill->size_m[0]/4;
+		point->x = 0;
+	}
+	else if (find_player(fill, fill->plateau[fill->size_m[0] - 2]) &&
+			 find_bott(fill, fill->plateau[fill->size_m[0] - 2]) && flag < 0
+			 && (fill->plateau[fill->size_m[0]/4][1] == fill->player ||
+				 fill->plateau[fill->size_m[0]/4 + 1][1] == fill->player) &&
+			find_player(fill, fill->plateau[0]) && !find_end(fill))
+	{
+		point->y = fill->size_m[0]/ 4 + fill->size_m[0] / 2;
+		point->x = fill->size_m[1];
+	}
 }
