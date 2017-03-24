@@ -36,9 +36,6 @@ void	write_in(t_fill *fill)
 	}
 }
 
-
-
-
 int		main(void)
 {
 	t_fill	*fill;
