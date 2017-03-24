@@ -9,7 +9,7 @@ void	put_flag(t_fill *fill, char *str, int *flag)
 	{
 		while (str[i])
 		{
-			if (str[i] == fill->bot)
+			if (str[i] == fill->bot || str[i] == fill->l_bot)
 			{
 				*flag = -777;
 				break ;

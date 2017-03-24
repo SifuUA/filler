@@ -27,7 +27,7 @@ int 	find_b(t_fill *fill)
 	return (0);
 }
 
-t_point	*find_road(t_point *p, t_fill *fill)
+t_point	*find_road(t_point *p, t_fill *fill, int flag)
 {
 	int i;
 	int min;
@@ -47,13 +47,26 @@ t_point	*find_road(t_point *p, t_fill *fill)
 	{
 		distance = manh_dist(p->x, p->y, fill->point[i].x,
 							 fill->point[i].y);
-		hz = fill->size_m[0] - point->y;
-		if (min > distance && pz > hz)
+		hz = fill->size_m[0] - fill->point[i].y;
+		if (min > distance && flag > 0)
 		{
 			point->y = fill->point[i].y;
 			point->x = fill->point[i].x;
 			min = distance;
 		}
+		else if (min >= distance && flag < 0 && pz <= hz && !find_player(fill, fill->plateau[0]))
+		{
+			point->y = fill->point[i].y;
+			point->x = fill->point[i].x;
+			min = distance;
+		}
+		else if (min > distance && flag < 0 && find_player(fill, fill->plateau[0]))
+		{
+			point->y = fill->point[i].y;
+			point->x = fill->point[i].x;
+			min = distance;
+		}
+
 		i++;
 	}
 	return (point);
@@ -144,8 +157,6 @@ t_point	*find_bot_revers(t_fill *fill, int flag)
 		x = fill->size_m[1] - 1;
 		while (x >= 0)
 		{
-			if ((d = check1(fill)) != NULL)
-				return (d);
 			if ((fill->plateau[y][x] == fill->bot ||
 				 fill->plateau[y][x] == fill->l_bot) &&
 				!find_player(fill, fill->plateau[y]) &&

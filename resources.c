@@ -56,7 +56,7 @@ void	search(t_fill *fill, int flag)
 		}
 		y++;
 	}
-	p_b = find_road(flag > 0 ? find_bot(fill, flag) : find_bot_revers(fill, flag), fill);
+	p_b = find_road(flag > 0 ? find_bot(fill, flag) : find_bot_revers(fill, flag), fill, flag);
 	ft_putnbr_fd(p_b->y, 1);
 	ft_putchar_fd(' ', 1);
 	ft_putnbr_fd(p_b->x, 1);
@@ -67,6 +67,6 @@ void	search(t_fill *fill, int flag)
 
 void	analize(t_point *point, t_fill *fill, int flag)//strategy
 {
-	point->y = flag > 0 ? fill->size_m[0]/2 : (fill->size_m[0]/2 + fill->size_m[0]/4);
+	point->y = flag > 0 ? fill->size_m[0]/2 : (fill->size_m[0]);
 	point->x = flag > 0 ? fill->size_m[1] : 0;
 }
