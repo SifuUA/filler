@@ -21,7 +21,8 @@ void	put_flag(t_fill *fill, char *str, int *flag)
 	{
 		while (str[i])
 		{
-			if (str[i] == fill->bot || str[i] == fill->l_bot)
+			if ((str[i] == fill->bot || str[i] == fill->l_bot)
+					&& (str[i + 1] == '.' || str[i - 1] == '.'))
 			{
 				*flag = -777;
 				break ;

@@ -57,7 +57,13 @@ void	analize(t_point *point, t_fill *fill, int flag)
 	else if (mini_hl(fill, flag))
 	{
 		point->y = fill->size_m[0] / 4 + fill->size_m[0] / 2;
-		point->x = fill->size_m[1];
+		point->x = fill->size_m[1] - 1;
+	}
+	else if (find_bott(fill, fill->plateau[fill->size_m[0] - 1])
+			&& !find_end(fill))
+	{
+		point->y = fill->size_m[0] / 4 + fill->size_m[0] / 2;
+		point->x = fill->size_m[1] - 1;
 	}
 }
 
