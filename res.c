@@ -92,4 +92,5 @@ void	search(t_fill *fill, int flag)
 	ft_putnbr_fd(p_b->x, 1);
 	ft_putchar_fd('\n', 1);
 	clear(fill);
+
 }
