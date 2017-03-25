@@ -31,7 +31,7 @@ int		buuu(t_fill *fill, int y, int x)
 	if ((fill->plateau[y][x] == fill->bot || fill->plateau[y][x] ==
 				fill->l_bot) && !find_player(fill, fill->plateau[y]) &&
 			fill->size_m[0] - y > 2 &&
-	find_player(fill, fill->plateau[1]))
+	find_player(fill, fill->plateau[1]) && !find_end(fill))
 		return (1);
 	return (0);
 }
