@@ -34,6 +34,46 @@ int		l_h_1(t_fill *fill, int flag)
 	return (0);
 }
 
+void	up_strategy(t_point **p, t_fill *fill)
+{
+	if (find_bott(fill, fill->plateau[0]) && find_player(fill,
+		fill->plateau[0]) && !find_player(fill, fill->plateau[fill->size_m[0] - 1]))
+	{
+		(*p)->y = fill->size_m[0] - 1;
+		(*p)->x = fill->size_m[1] / 2 + fill->size_m[1] / 3;
+	}
+	else if (find_player(fill, fill->plateau[0])
+			&& find_player(fill, fill->plateau[fill->size_m[0] - 1])
+			&& fill->plateau[0][0] != fill->player
+			&& !find_left_b(fill))
+	{
+		(*p)->y = 0;
+		(*p)->x = 0;
+	}
+	else if (find_player(fill, fill->plateau[0]) &&
+			find_player(fill, fill->plateau[fill->size_m[0] - 1])
+			&& fill->plateau[0][0] == fill->player
+			&& fill->plateau[fill->size_m[0] - 1][0] != fill->player)
+	{
+		(*p)->y = fill->size_m[0] - 1;
+		(*p)->x = 0;
+	}
+	else if (fill->plateau[0][0] == fill->player &&
+			fill->plateau[fill->size_m[0] - 1][0] == fill->player)
+	{
+		(*p)->y = 0;
+		(*p)->x =  fill->size_m[1] / 2;
+	}
+	else if (find_left_b(fill) && find_player(fill, fill->plateau[0])
+		&& find_player(fill, fill->plateau[fill->size_m[0] - 1])
+			&& !find_beg(fill))
+	{
+		(*p)->y = fill->size_m[0] - 1;
+		(*p)->x = 0;
+	}
+
+}
+
 void	analize(t_point *point, t_fill *fill, int flag)
 {
 	point->y = flag > 0 ? fill->size_m[0] / 2 : (fill->size_m[0]);
@@ -65,6 +105,10 @@ void	analize(t_point *point, t_fill *fill, int flag)
 		point->y = fill->size_m[0] / 4 + fill->size_m[0] / 2;
 		point->x = fill->size_m[1] - 1;
 	}
+	if (flag > 0)
+		up_strategy(&point, fill);
+
+
 }
 
 void	search(t_fill *fill, int flag)
