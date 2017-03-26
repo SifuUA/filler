@@ -105,6 +105,12 @@ void	analize(t_point *point, t_fill *fill, int flag)
 		point->y = fill->size_m[0] / 4 + fill->size_m[0] / 2;
 		point->x = fill->size_m[1] - 1;
 	}
+	else if (find_left_b(fill) && find_bott(fill, fill->plateau[fill->size_m[0] - 1])
+			&& find_bott(fill, fill->plateau[0]) && fill->plateau[0][0] == '.')
+	{
+		point->y = 0;
+		point->x = fill->size_m[1] / 4;
+	}
 	if (flag > 0)
 		up_strategy(&point, fill);
 

@@ -32,7 +32,7 @@ typedef struct	s_point{
 
 typedef struct	s_fill
 {
-	t_point		point[1000];
+	t_point		point[100000];
 	char		**plateau;
 	char		**piece;
 	char		player;

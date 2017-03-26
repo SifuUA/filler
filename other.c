@@ -21,21 +21,21 @@ t_fill	*get_mem(void)
 	new = malloc(sizeof(t_fill));
 	if (!new)
 		exit(1);
-	new->plateau = (char **)malloc(sizeof(char *) * 1000);
+	new->plateau = (char **)malloc(sizeof(char *) * 10000);
 	!new->plateau ? exit(1) : new->plateau;
-	while (i < 1000)
+	while (i < 10000)
 	{
-		new->plateau[i] = (char *)malloc(sizeof(char ) * 1000);
-		ft_bzero(new->plateau[i], 1000);
+		new->plateau[i] = (char *)malloc(sizeof(char ) * 10000);
+		ft_bzero(new->plateau[i], 10000);
 		i++;
 	}
 	i = 0;
-	new->piece = (char **)malloc(sizeof(char *) * 1000);
+	new->piece = (char **)malloc(sizeof(char *) * 10000);
 	!new->piece ? exit(1) : new->piece;
-	while (i < 1000)
+	while (i < 10000)
 	{
-		new->piece[i] = (char *)malloc(sizeof(char ) * 1000);
-		ft_bzero(new->piece[i], 1000);
+		new->piece[i] = (char *)malloc(sizeof(char ) * 10000);
+		ft_bzero(new->piece[i], 10000);
 		i++;
 	}
 	return (new);
