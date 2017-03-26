@@ -74,4 +74,6 @@ int				find_left_b(t_fill *fill);
 int				find_end(t_fill *fill);
 int				find_beg(t_fill *fill);
 void			push_piece(int y, int x, t_fill *fill);
+void			f_1(t_point *point, t_fill *fill, int flag);
+void			f_2(t_point *point, t_fill *fill, int flag);
 #endif
