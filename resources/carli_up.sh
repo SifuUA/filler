@@ -1,13 +1,3 @@
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 1.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 2.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 3.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 4.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 5.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 6.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 7.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 8.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 9.txt
-./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map01 > 10.txt
 ./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map02 > 11.txt
 ./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map02 > 12.txt
 ./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map02 > 13.txt
@@ -19,4 +9,19 @@
 ./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map02 > 19.txt
 ./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map02 > 20.txt
 ./filler_vm -p1 players/a.out -p2 players/carli.filler -v -f maps/map02 > 21.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 1s.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 1ss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 1sss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 1ssss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 1sssss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 2s.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 2ss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 2sss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 2ssss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 2sssss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 3s.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 3ss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 3sss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 3ssss.txt
+./filler_vm -p1 players/a.out -p2 players/superjeannot.filler -v -f maps/map02 > 3sssss.txt
 
